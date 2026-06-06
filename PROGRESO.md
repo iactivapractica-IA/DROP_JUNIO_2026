@@ -100,4 +100,3 @@ Todas las prendas tienen foto delantera + trasera (galería de 2 imágenes), sal
 - ✅ Landing completa y funcional en local
 - ✅ Formulario de pre-order conectado a n8n webhook
 - ⏳ Pendiente: verificar n8n → Airtable, deploy a Vercel, favicon, SEO
-a
