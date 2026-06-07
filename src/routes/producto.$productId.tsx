@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from '@tanstack/react-router'
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import { products, type Product } from '../data/products'
 import { useCart } from '../context/CartContext'
 
@@ -32,6 +32,9 @@ function ProductPage() {
 
 function ProductDetail({ product }: { product: Product }) {
   const [mainImg, setMainImg] = useState(0)
+  const touchStartX = useRef<number>(0)
+  const [dragPx, setDragPx] = useState(0)
+  const [dragging, setDragging] = useState(false)
   const [selectedSize, setSelectedSize] = useState<string | null>(null)
   const [sizeError, setSizeError] = useState(false)
   const [added, setAdded] = useState(false)
@@ -69,13 +72,46 @@ function ProductDetail({ product }: { product: Product }) {
         {/* Galería */}
         <div className="space-y-3">
           <div className="bg-gray-50 overflow-hidden aspect-[3/4]">
-            <img
-              key={mainImg}
-              src={product.images[mainImg]}
-              alt={product.name}
-              className="w-full h-full object-cover animate-fade-in"
-            />
+            <div
+              className="flex h-full"
+              style={{
+                transform: `translateX(calc(-${mainImg * 100}% + ${dragPx}px))`,
+                transition: dragging ? 'none' : 'transform 0.35s ease-out',
+                willChange: 'transform',
+              }}
+              onTouchStart={(e) => {
+                touchStartX.current = e.touches[0].clientX
+                setDragging(true)
+              }}
+              onTouchMove={(e) => {
+                setDragPx(e.touches[0].clientX - touchStartX.current)
+              }}
+              onTouchEnd={() => {
+                setDragging(false)
+                if (Math.abs(dragPx) > 50) {
+                  if (dragPx < 0) setMainImg(i => Math.min(i + 1, product.images.length - 1))
+                  else            setMainImg(i => Math.max(i - 1, 0))
+                }
+                setDragPx(0)
+              }}
+            >
+              {product.images.map((img, i) => (
+                <div key={i} className="min-w-full h-full shrink-0">
+                  <img src={img} alt={product.name} className="w-full h-full object-cover" />
+                </div>
+              ))}
+            </div>
           </div>
+          {product.images.length > 1 && (
+            <div className="flex md:hidden justify-center gap-2 pt-1">
+              {product.images.map((_, i) => (
+                <span
+                  key={i}
+                  className={`w-1.5 h-1.5 rounded-full transition-all duration-200 ${mainImg === i ? 'bg-black' : 'bg-black/25'}`}
+                />
+              ))}
+            </div>
+          )}
           {product.images.length > 1 && (
             <div className="flex gap-2">
               {product.images.map((img, i) => (
