@@ -73,7 +73,7 @@ function ProductDetail({ product }: { product: Product }) {
         <div className="space-y-3">
           <div className="bg-gray-50 overflow-hidden aspect-[3/4]">
             <div
-              className="flex h-full"
+              className="flex h-full w-full"
               style={{
                 transform: `translateX(calc(-${mainImg * 100}% + ${dragPx}px))`,
                 transition: dragging ? 'none' : 'transform 0.35s ease-out',
@@ -96,7 +96,7 @@ function ProductDetail({ product }: { product: Product }) {
               }}
             >
               {product.images.map((img, i) => (
-                <div key={i} className="min-w-full h-full shrink-0">
+                <div key={i} className="w-full h-full shrink-0">
                   <img src={img} alt={product.name} className="w-full h-full object-cover" />
                 </div>
               ))}
