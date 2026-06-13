@@ -7,6 +7,7 @@ export const Route = createFileRoute('/pre-order')({
 function PreOrderPage() {
   return (
     <main className="max-w-2xl mx-auto px-6 py-20">
+      <link rel="canonical" href="https://eclipssebrand.es/pre-order" />
       <p className="text-[10px] font-800 tracking-[0.4em] uppercase text-gray-400 mb-3 text-center">
         PRE-ORDER — DROP 008
       </p>

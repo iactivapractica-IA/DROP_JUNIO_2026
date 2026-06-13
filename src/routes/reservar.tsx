@@ -202,6 +202,7 @@ function ReservarPage() {
 
   return (
     <main className="max-w-2xl mx-auto px-6 py-16">
+      <link rel="canonical" href="https://eclipssebrand.es/reservar" />
       <p className="text-[10px] font-800 tracking-[0.4em] uppercase text-gray-400 mb-2">
         PRE-ORDER — DROP 008
       </p>

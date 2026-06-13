@@ -59,6 +59,7 @@ function ProductDetail({ product }: { product: Product }) {
 
   return (
     <main className="max-w-6xl mx-auto px-6 py-10 md:py-16 animate-fade-in">
+      <link rel="canonical" href={`https://eclipssebrand.es/producto/${product.id}`} />
       {/* Breadcrumb */}
       <nav className="mb-10 flex items-center gap-2 text-[11px] font-700 tracking-widest uppercase text-gray-400">
         <Link to="/" className="hover:text-black transition-colors duration-200">

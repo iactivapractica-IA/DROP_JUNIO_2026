@@ -7,6 +7,7 @@ export const Route = createFileRoute('/sobre-nosotros')({
 function SobreNosotros() {
   return (
     <main className="max-w-2xl mx-auto px-6 py-20">
+      <link rel="canonical" href="https://eclipssebrand.es/sobre-nosotros" />
       <p className="text-[10px] font-800 tracking-[0.4em] uppercase text-gray-400 mb-3 text-center">
         ECLIPSSE™ UNIVERSE
       </p>

@@ -10,6 +10,7 @@ export const Route = createFileRoute('/')({
 function HomePage() {
   return (
     <main>
+      <link rel="canonical" href="https://eclipssebrand.es/" />
       <Hero />
       <PrendasDrop />
       <ConceptoDrop />
